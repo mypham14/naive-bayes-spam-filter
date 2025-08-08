@@ -30,8 +30,17 @@ This project involves building a spam filter for SMS messages using the multinom
 - Transform the training set into a format where each row represents a message and each column represents a word from the vocabulary.
 
 ### 6. Calculating Probabilities
-- Calculate the prior probabilities $$ P(\text{Spam}) $$ and $$ P(\text{Ham}) $$.
-- Use Laplace smoothing to calculate the likelihoods $$ P(w_i|\text{Spam}) $$ and $$ P(w_i|\text{Ham}) $$.
+
+#### Calculate Prior Probabilities
+- Calculate the prior probabilities P(Spam) and P(Ham):
+  - P(Spam) = (Number of Spam messages) / (Total number of messages)
+  - P(Ham) = (Number of Ham messages) / (Total number of messages)
+
+#### Calculate Word Probabilities with Laplace Smoothing
+- Use Laplace smoothing to calculate the likelihoods P(w_i|Spam) and P(w_i|Ham):
+  - P(w_i|Spam) = (Number of times word w_i occurs in spam messages + alpha) / (Total number of words in spam messages + alpha * Total number of words in vocabulary)
+  - P(w_i|Ham) = (Number of times word w_i occurs in ham messages + alpha) / (Total number of words in ham messages + alpha * Total number of words in vocabulary)
+- Here, alpha is the smoothing parameter, which is set to 1 for Laplace smoothing.
 
 ### 7. Classifying New Messages
 - Implement a function to classify new messages based on the calculated probabilities.
